@@ -1,0 +1,43 @@
+#version 400 core
+
+// THE VERTEX SHADER
+// THIS IS WHERE THE TRANSFORMATION MATRIX ACTUALLY TRANSFORMS THE MODEL
+// THIS IS WHERE THE VIEW MATRIX TRANSFORMS THE MODELS BASED ON CAMERA MOVEMENT
+
+in vec3 position;
+in vec2 textureCoords;
+in vec3 normal;
+
+out vec2 pass_textureCoords;
+out vec3 surfaceNormal;
+out vec3 towardsLightVector;
+out float visibility;
+
+uniform mat4 transformMatrix; //transform of model
+uniform mat4 projectionMatrix; //projection/perspective view camera
+uniform mat4 viewMatrix; //matrix opposite of camera movement
+uniform vec3 lightPosition;
+uniform float directionalLight; //0 or 1 boolean
+uniform float fogDensity;
+uniform float fogGradient;
+
+
+void main(void){
+
+    vec4 worldPosition = transformMatrix * vec4(position, 1.0);
+    vec4 positionRelativeToCamera = viewMatrix * worldPosition;
+    gl_Position = projectionMatrix * positionRelativeToCamera;
+    pass_textureCoords = textureCoords;
+
+    surfaceNormal = (transformMatrix * vec4(normal, 0.0)).xyz;
+    if(directionalLight == 0){
+        towardsLightVector = lightPosition - worldPosition.xyz;
+    }else{
+        towardsLightVector = lightPosition; //pretend lightPosition is the direction vector to light
+    }
+
+    float distance = length(positionRelativeToCamera.xyz);
+    visibility = exp(-pow((distance*fogDensity), fogGradient));
+    visibility = clamp(visibility, 0.0, 1.0);
+
+}
