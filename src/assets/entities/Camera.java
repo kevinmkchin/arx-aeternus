@@ -18,6 +18,8 @@ public class Camera {
     public void update(){
         //TODO CHANGE CAMERA MOVEMENT
 
+        //TODO FIX CAMERA ROTATION AND STRAFING BUG
+
         //Calculate direction vector from Pitch and Yaw
         float x = (float) (Math.cos(Math.toRadians(pitch)) * Math.sin(Math.toRadians(yaw)));
         float y = (float) -Math.sin(Math.toRadians(pitch));

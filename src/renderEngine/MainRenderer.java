@@ -8,7 +8,6 @@ import assets.shaders.StaticShader;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
-import org.newdawn.slick.opengl.renderer.SGL;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,7 +52,7 @@ public class MainRenderer {
     public void render(Light light, Camera camera){
         prepare();
         shader.start();
-        shader.loadFog(0.5f, 0.5f, 0.5f, 0.04f,3);
+        shader.loadFog(0.5f, 0.5f, 0.5f, 0.036f,3);
         shader.loadLight(light);
         shader.loadViewMatrix(camera);
 
@@ -66,7 +65,6 @@ public class MainRenderer {
     public void prepare(){
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT|GL11.GL_DEPTH_BUFFER_BIT);
-        GL11.glTexParameterf(GL11.GL_TEXTURE_2D, SGL.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST); //disables bilinear filtering
         GL11.glClearColor(0.5f, 0.5f, 0.5f, 1);
     }
 

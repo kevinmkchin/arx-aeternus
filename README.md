@@ -1,11 +1,11 @@
 # rapture
 
-###Scenes
+### Scenes
 All Scenes have:
-- ModelLoader
-- MainRenderer
-- Camera
-- Light
+- ModelLoader modelLoader
+- MainRenderer renderer
+- Camera camera
+- Light light
 
 MainGameLoop must call *Scene.updateScene()* and *Scene.renderScene()* every frame.
 *Scene.closeScene()* must be called when scene is no longer active.
@@ -18,3 +18,5 @@ Scenes should have a constructor with the following:
 Scenes must implement:
 - loadContent()
 - updateScene()
+
+To process entities to render, *updateScene()* must call *renderer.processEntity(Entity)* for every entity.

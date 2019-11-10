@@ -21,12 +21,13 @@ public class TestScene extends Scene {
     @Override
     protected void loadContent() {
         TexturedModel texturedModel = makeBlockModel("acacia");
+        TexturedModel grass = makeBlockModel("grass");
 
         for(int i=0; i<64; i++){
             for(int j=0; j<64; j++) {
                 blocks.add(new Entity(texturedModel, new Vector3f(i,0,j),0,0,0,1));
                 if(new Random().nextInt(2) == 1) {
-                    blocks.add(new Entity(texturedModel, new Vector3f(i, 1, j), 0, 0, 0, 1));
+                    blocks.add(new Entity(grass, new Vector3f(i, 1, j), 0, 0, 0, 1));
                 }
             }
         }
