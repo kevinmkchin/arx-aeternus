@@ -1,7 +1,7 @@
 package game;
 
+import game.scene.GameScene;
 import game.scene.Scene;
-import game.scene.TestScene;
 import org.lwjgl.opengl.Display;
 import renderEngine.DisplayManager;
 
@@ -11,14 +11,12 @@ public class MainGameLoop {
 
         DisplayManager.createDisplay();
 
-        Scene activeScene = new TestScene();
+        Scene activeScene = new GameScene();
 
         //MAIN GAME LOOP (GAME LOGIC / RENDERING / UPDATE DISPLAY)
         while(!Display.isCloseRequested()){
 
-            //update
             activeScene.updateScene();
-            //render
             activeScene.renderScene();
 
             //INITIALIZE SCENES HERE BY CHECKING FOR STATE CHANGE

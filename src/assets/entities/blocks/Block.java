@@ -6,8 +6,47 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class Block extends Entity {
 
-    public Block(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
-        super(model, position, rotX, rotY, rotZ, scale);
+    public enum Type {
+        GRASS,
+        CONCRETE,
+        DIRT
+    }
+
+    private Type type;
+
+
+    public Block(Type type, TexturedModel model,
+                 float x, float y, float z,
+                 float rotX, float rotY, float rotZ,
+                 float scale) {
+        super(model, new Vector3f(x,y,z), rotX, rotY, rotZ, scale);
+        this.type = type;
+    }
+
+    public Block(Type type, TexturedModel model,
+                 float x, float y, float z){
+        super(model, new Vector3f(x,y,z),0,0,0,1);
+        this.type = type;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public int getX(){
+        return (int) getPosition().getX();
+    }
+
+    public int getY(){
+        return (int) getPosition().getY();
+    }
+
+    public int getZ(){
+        return (int) getPosition().getZ();
     }
 
 }

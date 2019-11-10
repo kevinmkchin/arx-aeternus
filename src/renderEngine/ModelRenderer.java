@@ -6,6 +6,7 @@ import assets.models.TexturedModel;
 import assets.shaders.StaticShader;
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.vector.Matrix4f;
+import org.newdawn.slick.opengl.renderer.SGL;
 import tools.Maths;
 
 import java.util.List;
@@ -45,6 +46,7 @@ public class ModelRenderer {
         GL20.glEnableVertexAttribArray(2);
 
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
+        GL11.glTexParameterf(GL11.GL_TEXTURE_2D, SGL.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST); //disables bilinear filtering
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getTexture().getID());
     }
 

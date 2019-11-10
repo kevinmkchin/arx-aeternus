@@ -20,7 +20,7 @@ public class DisplayManager {
         try {
             Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
             Display.create(new PixelFormat().withSamples(4), attribs); //TODO MULTISAMPLING ANTIALIASING
-            Display.setTitle("Cataclysm 3D Game");
+            Display.setTitle("RAPTURE");
 
             Mouse.create();
         } catch (LWJGLException e) {
