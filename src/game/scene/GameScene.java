@@ -4,14 +4,15 @@ import assets.entities.Entity;
 import assets.entities.blocks.Block;
 import assets.models.TexturedModel;
 import game.map.World;
-import game.map.generation.WorldGenerator;
 import game.map.persistence.SaveTool;
+import game.player.Player;
 
 import java.util.HashMap;
 
 public class GameScene extends Scene {
 
     World world;
+    Player player;
 
     private int drawDistance = 3;
 
@@ -19,6 +20,8 @@ public class GameScene extends Scene {
         initScene();
         setCamera();
         setLighting(1,4,1.3f,1,1,1,0.2f,true);
+
+        player = new Player(1,5,1, camera);
     }
 
     @Override
@@ -30,26 +33,25 @@ public class GameScene extends Scene {
         loadedModels.put(Block.Type.CONCRETE, makeBlockModel("acacia"));
 
 
-        new WorldGenerator(loadedModels).generateNewWorld();
+        //new WorldGenerator(loadedModels).generateNewWorld(); //TODO WORLD GEN
         world = new SaveTool().loadWorldFromSave("myJSON.json", loadedModels);
     }
 
     @Override
     public void updateScene() {
-        camera.update();
+        player.update();
 
 
-
-        renderWorld();
+        processWorld();
     }
 
-    private void renderWorld(){
-        int currentCamX = ((int) camera.getPosition().getX()) / 16;
-        int currentCamY = ((int) camera.getPosition().getZ()) / 16;
+    private void processWorld(){
+        int currentCamX = ((int) player.getxPos()) / World.WORLD_X;
+        int currentCamY = ((int) player.getzPos()) / World.WORLD_Y;
         int xLowerBound = Math.max(currentCamX - drawDistance, 0);
-        int xUpperBound = Math.min(currentCamX + drawDistance, world.WORLD_X);
+        int xUpperBound = Math.min(currentCamX + drawDistance, World.WORLD_X-1);
         int yLowerBound = Math.max(currentCamY - drawDistance, 0);
-        int yUpperBound = Math.min(currentCamY + drawDistance, world.WORLD_Y);
+        int yUpperBound = Math.min(currentCamY + drawDistance, World.WORLD_Y-1);
         for(int i =xLowerBound; i <= xUpperBound; i++){
             for(int j=yLowerBound; j<= yUpperBound; j++){
                 for(Entity e : world.getChunks()[i][j].getBlocks()){

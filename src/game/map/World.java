@@ -2,8 +2,8 @@ package game.map;
 
 public class World {
 
-    public final int WORLD_X = 64;
-    public final int WORLD_Y = 64;
+    public static final int WORLD_X = 16;
+    public static final int WORLD_Y = 16;
 
     private Chunk[][] chunks = new Chunk[WORLD_X][WORLD_Y];
 
