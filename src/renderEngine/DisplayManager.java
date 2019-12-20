@@ -6,8 +6,8 @@ import org.lwjgl.opengl.*;
 
 public class DisplayManager {
 
-    private static final int WIDTH = 1600; //resolution x
-    private static final int HEIGHT = 900; //resolution y
+    private static final int WIDTH = 1280; //resolution x
+    private static final int HEIGHT = 720; //resolution y
     private static final int FPS_CAP = 60; //framerate cap
     private static boolean vSyncOn = false; //v-sync on?
 
