@@ -21,7 +21,7 @@ public class GameScene extends Scene {
         setCamera();
         setLighting(1,4,1.3f,1,1,1,0.2f,true);
 
-        player = new Player(1,5,1, camera);
+        player = new Player(1,2f,1, camera);
     }
 
     @Override

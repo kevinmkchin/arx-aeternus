@@ -31,6 +31,7 @@ public class WorldGenerator {
         new SaveTool().writeWorldToSave("myJSON.json", world);
     }
 
+    //TODO JUST A PLACEHOLDER ALGORITHM FOR GENERATING CHUNK
     private Chunk generateChunk(int x, int y){
         Chunk chunk = new Chunk(x, y);
 
