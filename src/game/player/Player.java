@@ -1,14 +1,17 @@
 package game.player;
 
 import assets.entities.Camera;
+import assets.entities.blocks.Block;
 import assets.entities.collisions.AABB;
+import game.map.Chunk;
+import game.map.World;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
 
 public class Player {
 
-    private final float PLAYER_WIDTH = 1f;
+    private final float PLAYER_WIDTH = 0.6f;
     private final float PLAYER_HEIGHT = 1.7f;
 
     /*
@@ -22,8 +25,8 @@ public class Player {
     private float yPos;
     private float zPos;
     private Camera camera;
-
     private AABB collisionBox;
+    private World world;
 
     private boolean freeMode = true; //TODO set this back to false for normal fps
 
@@ -92,6 +95,17 @@ public class Player {
         }
         */
 
+        //------
+        //TODO below is how to get the current chunk
+        Chunk currentChunk = world.getChunks()[(int) xPos / World.WORLD_X][(int) zPos / World.WORLD_Y];
+        //------
+        //TODO check all blocks in current chunk (as well as other collidable objects i guess)
+        for(Block b : currentChunk.getBlocks()){
+            if(b.getAABB().isBoxColliding(collisionBox)){
+                System.out.println("GG IT WORKS");
+            }
+        }
+
     }
 
     /// CALL AFTER PLAYER MOVES SINCE CAMERA NEEDS TO MOVE TOO
@@ -124,6 +138,13 @@ public class Player {
             xPos -= zUnit * playerSpeed;
             zPos += xUnit * playerSpeed;
         }
+    }
+
+    public World getWorld() {
+        return world;
+    }
+    public void setWorld(World world) {
+        this.world = world;
     }
 
     public float getxPos() {

@@ -21,12 +21,14 @@ public class Block extends Entity {
                  float scale) {
         super(model, new Vector3f(x,y,z), rotX, rotY, rotZ, scale);
         this.type = type;
+        createBlockAABB();
     }
 
     public Block(Type type, TexturedModel model,
                  float x, float y, float z){
         super(model, new Vector3f(x,y,z),0,0,0,1);
         this.type = type;
+        createBlockAABB();
     }
 
     public Type getType() {
