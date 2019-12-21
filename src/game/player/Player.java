@@ -1,20 +1,29 @@
 package game.player;
 
 import assets.entities.Camera;
+import assets.entities.collisions.AABB;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
 
 public class Player {
 
-    private final float PLAYER_WIDTH = 0.6f;
+    private final float PLAYER_WIDTH = 1f;
     private final float PLAYER_HEIGHT = 1.7f;
 
+    /*
+    * Player origin will be at xPos, yPos, zPos.
+    * The Player origin is at the 'feet' of the Player.
+    * xPos is the center x of the player.
+    * zPos is the center z of the player.
+    * yPos is the BASE of the player. It is the bottom of the player.*/
     private float playerSpeed = 0.08f;
     private float xPos;
     private float yPos;
     private float zPos;
     private Camera camera;
+
+    private AABB collisionBox;
 
     private boolean freeMode = true; //TODO set this back to false for normal fps
 
@@ -23,10 +32,14 @@ public class Player {
         this.yPos = yPos;
         this.zPos = zPos;
         this.camera = camera;
-        camera.setPosition(new Vector3f(xPos, yPos, zPos));
+        collisionBox = new AABB(xPos, yPos, zPos, PLAYER_WIDTH, PLAYER_HEIGHT);
+        cameraUpdatePosition(xPos, yPos, zPos);
     }
 
     public void update(){
+        float oldX = xPos;
+        float oldY = yPos;
+        float oldZ = zPos;
 
         Vector3f camDir = camera.getCamDirection();
         float xUnit = camDir.getX()
@@ -62,8 +75,28 @@ public class Player {
             strafeRight(xUnit, zUnit);
         }
 
-        camera.setPosition(new Vector3f(xPos, yPos, zPos));
+        /// UPDATE THE AABB AND CAMERA
+        collisionBox.updateBB(xPos - oldX, yPos - oldY, zPos - oldZ);
+        cameraUpdatePosition(xPos, yPos, zPos);
 
+        /* //DEBUGGING POSITIONS
+        if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+            System.out.println("Player Position: " + xPos + " " + yPos + " " + zPos);
+            System.out.println("AABB Min Corner: " + collisionBox.getMinCorner().getX() + " "
+                    + collisionBox.getMinCorner().getY() + " " + collisionBox.getMinCorner().getZ());
+            System.out.println("AABB Max Corner: " + collisionBox.getMaxCorner().getX() + " "
+                    + collisionBox.getMaxCorner().getY() + " " + collisionBox.getMaxCorner().getZ());
+            System.out.println("Camera Position: " + camera.getPosition().getX() + " "
+                    + camera.getPosition().getY() + " " + camera.getPosition().getZ());
+            System.out.println(" ");
+        }
+        */
+
+    }
+
+    /// CALL AFTER PLAYER MOVES SINCE CAMERA NEEDS TO MOVE TOO
+    private void cameraUpdatePosition(float newPlayerX, float newPlayerY, float newPlayerZ){
+        camera.setPosition(new Vector3f(newPlayerX, newPlayerY + PLAYER_HEIGHT, newPlayerZ));
     }
 
     private void moveForward(float xUnit, float zUnit){

@@ -1,5 +1,6 @@
 package assets.entities;
 
+import assets.entities.collisions.AABB;
 import assets.models.TexturedModel;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -9,6 +10,8 @@ public class Entity {
     private Vector3f position;
     private float rotX, rotY, rotZ;
     private float scale;
+
+    private AABB collisionBox = null;
 
     public Entity(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
         this.model = model;
@@ -23,14 +26,38 @@ public class Entity {
         this.position.x += dx;
         this.position.y += dy;
         this.position.z += dz;
+        if(collisionBox != null){
+            collisionBox.updateBB(dx,dy,dz);
+        }
     }
 
     public void increaseRotation(float drx, float dry, float drz){
         this.rotX += drx;
         this.rotY += dry;
         this.rotZ += drz;
+        ///then collisionBox gets messed up
     }
 
+    /// AABB COLLISIONS
+    public void createAABB(float xMax, float xMin, float zMax, float zMin, float yMax, float yMin){
+        collisionBox = new AABB(xMax, xMin, zMax, zMin, yMax, yMin);
+    }
+    public void createAABB(float xMin, float yMin, float zMin, float sideLength){
+        collisionBox = new AABB(xMin, yMin, zMin, sideLength);
+    }
+    public void createAABB(float xCenter, float yBase, float zCenter, float width, float height){
+        collisionBox = new AABB(xCenter, yBase, zCenter, width, height);
+    }
+    public void createBlockAABB(){
+        collisionBox = new AABB(position.x, position.y, position.z, 1);
+        //requires block side length to be 1 unit
+    }
+    public AABB getAABB() {
+        return collisionBox;
+    }
+    public void setAABB(AABB boundingBox) {
+        this.collisionBox = boundingBox;
+    }
 
     // GETTERS & SETTERS
     public TexturedModel getModel() {
@@ -44,6 +71,9 @@ public class Entity {
         return position;
     }
     public void setPosition(Vector3f position) {
+        collisionBox.updateBB(position.x - this.position.x,
+                position.y - this.position.y,
+                position.z - this.position.z); //might be broken idk
         this.position = position;
     }
 
@@ -74,5 +104,7 @@ public class Entity {
     public void setScale(float scale) {
         this.scale = scale;
     }
+
+
 
 }
