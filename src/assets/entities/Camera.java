@@ -2,6 +2,7 @@ package assets.entities;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
+import tools.Maths;
 
 public class Camera {
 
@@ -9,7 +10,8 @@ public class Camera {
     private float pitch = 0;
     private float yaw = 180;
     private float sensitivity = 0.1f;
-
+    private boolean freeMode = false;
+    private float maxPitch = 89; //in deg
 
     public Vector3f getCamDirection(){
         //Calculate direction vector from Pitch and Yaw
@@ -28,6 +30,11 @@ public class Camera {
     private void calculatePitch(){
         float pitchChange = Mouse.getDY() * sensitivity;
         pitch -= pitchChange;
+        if(!freeMode){ //limit pitch
+            if(Math.abs(pitch) >= maxPitch){
+                pitch = Maths.getSign(pitch) * maxPitch;
+            }
+        }
     }
     private void calculateYaw(){
         float yawChange = Mouse.getDX() * sensitivity;
@@ -47,6 +54,10 @@ public class Camera {
     }
     public float getYaw() {
         return yaw;
+    }
+
+    public void setFreeMode(boolean freeMode){
+        this.freeMode = freeMode;
     }
 
 }
