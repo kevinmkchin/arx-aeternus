@@ -107,46 +107,4 @@ public class CollisionManager {
         return badEntity;
     }
 
-    /**
-     * */
-    public static float getPixelPerfectDelta(Entity other,
-                                             float currentPos,
-                                             Plane plane,
-                                             boolean add,
-                                             float delta,
-                                             float width, float height){
-//        int sign;
-//        if(add){
-//            sign = 1;
-//        }else{
-//            sign = -1;
-//        }
-//        float tempPos = currentPos + sign * (width/2);
-//
-//        switch(plane){
-//            case X:
-//                while(!other.getAABB().isXColliding(tempPos)){
-//                    tempPos += sign * 0.01f;
-//                    if(Math.abs(tempPos - (sign * (width/2)) - currentPos) >= Math.abs(delta)){
-//                        break;
-//                        //just making sure it doesn't bug out
-//                    }
-//                }
-//                return tempPos - (sign * (width/2)) - currentPos;
-//            case Y:
-//                return 0; //TODO implement
-//            case Z:
-//                while(!other.getAABB().isZColliding(tempPos)){
-//                    tempPos += sign * 0.01f;
-//                    if(Math.abs(tempPos - (sign * (width/2)) - currentPos) >= Math.abs(delta)){
-//                        break;
-//                        //just making sure it doesn't bug out
-//                    }
-//                }
-//                return tempPos - (sign * (width/2)) - currentPos;
-//        }
-
-        return 0; //should never run.
-    }
-
 }

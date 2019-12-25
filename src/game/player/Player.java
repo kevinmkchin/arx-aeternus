@@ -16,7 +16,7 @@ public class Player {
     private final float PLAYER_WIDTH = 0.6f;
     private final float PLAYER_HEIGHT = 1.7f;
 
-    /*
+    /* FIELDS
      * Player origin will be at xPos, yPos, zPos.
      * The Player origin is at the 'feet' of the Player.
      * xPos is the center x of the player.
@@ -26,19 +26,22 @@ public class Player {
     private float xPos;
     private float yPos;
     private float zPos;
-    private float camOffsetFromTop = 0.1f;
     private Camera camera;
     private AABB collisionBox;
     private World world;
-
+    /// JUMPING
     private float gravity = 0.02f;
     private float ySpeed = 0f;
     private float maxYSpeed = 0.5f;
     private float jumpSpeed = 0.25f;
     private boolean spaceDown = false;
     private boolean canJump = true;
+    /// MISC
+    private float camOffsetFromTop = 0.1f; //how far down the cam is from the top of the player.
+    private float colPrecision = 0.001f; //how precise we want collisions to be.
 
-    private boolean freeMode = false; //TODO set this back to false for normal fps
+
+    private boolean freeMode = false;
 
     public Player(float xPos, float yPos, float zPos, Camera camera){
         this.xPos = xPos;
@@ -140,15 +143,15 @@ public class Player {
             float deltaY = 0;
             if(ySpeed <= 0) {
                 while (!badYEntity.getAABB().isYColliding(yPos + deltaY)) {
-                    deltaY -= 0.001f;
+                    deltaY -= colPrecision;
                 }
                 canJump = true;
-                yPos += deltaY + 0.001f;
+                yPos += deltaY + colPrecision;
             }else{
                 while (!badYEntity.getAABB().isYColliding(yPos + PLAYER_HEIGHT + deltaY)) {
-                    deltaY += 0.001f;
+                    deltaY += colPrecision;
                 }
-                yPos += deltaY - 0.001f;
+                yPos += deltaY - colPrecision;
             }
             ySpeed = 0;
         }
@@ -157,6 +160,7 @@ public class Player {
     /// Free Camera Mode
     private void doFreeMode(){
         if(Mouse.isButtonDown(1)) {
+            camera.setFreeMode(true);
             camera.update();
 
             if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
@@ -180,7 +184,6 @@ public class Player {
     private void strafeRight(float xUnit, float zUnit){
         moveWithCollision(false, zUnit * playerSpeed, true, xUnit * playerSpeed);
     }
-
     private void moveWithCollision(boolean addX, float deltaX, boolean addZ, float deltaZ){
         Entity badE = CollisionManager.checkCollision(world,
                 xPos,yPos,zPos,
@@ -197,17 +200,19 @@ public class Player {
             }
         }else{
             //DO PRECISION COLLISION
-            float delta = CollisionManager.getPixelPerfectDelta(badE,
-                    xPos,
-                    Plane.X,
-                    addX,
-                    deltaX,
-                    PLAYER_WIDTH, PLAYER_HEIGHT);
-            if(addX){
-                xPos += delta;
-            }else{
-                xPos -= delta;
+            float dX = 0;
+            if(deltaX >= 0 && addX || deltaX < 0 && !addX) {
+                while (!badE.getAABB().isXColliding(xPos + (PLAYER_WIDTH / 2) + dX)){
+                    dX += colPrecision;
+                }
+                xPos += dX - colPrecision;
+            }else if(deltaX < 0 && addX || deltaX >= 0 && !addX){
+                while (!badE.getAABB().isXColliding(xPos - (PLAYER_WIDTH / 2) + dX)){
+                    dX -= colPrecision;
+                }
+                xPos += dX + colPrecision;
             }
+
         }
 
         badE = CollisionManager.checkCollision(world,
@@ -225,16 +230,17 @@ public class Player {
             }
         }else{
             //DO PRECISION COLLISION
-            float delta = CollisionManager.getPixelPerfectDelta(badE,
-                    zPos,
-                    Plane.Z,
-                    addZ,
-                    deltaZ,
-                    PLAYER_WIDTH, PLAYER_HEIGHT);
-            if(addZ){
-                zPos += delta;
-            }else{
-                zPos -= delta;
+            float dZ = 0;
+            if(deltaZ >= 0 && addZ || deltaZ < 0 && !addZ) {
+                while (!badE.getAABB().isZColliding(zPos + (PLAYER_WIDTH / 2) + dZ)){
+                    dZ += colPrecision;
+                }
+                zPos += dZ - colPrecision;
+            }else if(deltaZ < 0 && addZ || deltaZ >= 0 && !addZ){
+                while (!badE.getAABB().isZColliding(zPos - (PLAYER_WIDTH / 2) + dZ)){
+                    dZ -= colPrecision;
+                }
+                zPos += dZ + colPrecision;
             }
         }
     }

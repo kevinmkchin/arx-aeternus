@@ -15,7 +15,7 @@ public class GameScene extends Scene {
     World world;
     Player player;
 
-    private int drawDistance = 3;
+    private int drawDistance = 3; //in chunks
 
     public GameScene(){
         initScene();
