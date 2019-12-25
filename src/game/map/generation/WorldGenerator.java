@@ -21,8 +21,8 @@ public class WorldGenerator {
         World world = new World();
 
         //TODO GET RID OF THIS STUPID ONE LATER
-        for(int i = 0; i < world.WORLD_X; i++){
-            for(int j = 0; j< world.WORLD_Y; j++){
+        for(int i = 0; i < world.WORLD_SIZE_X; i++){
+            for(int j = 0; j< world.WORLD_SIZE_Y; j++){
                 Chunk chunk = generateChunk(i, j);
                 world.getChunks()[i][j] = (chunk);
             }
@@ -35,11 +35,11 @@ public class WorldGenerator {
     private Chunk generateChunk(int x, int y){
         Chunk chunk = new Chunk(x, y);
 
-        for(int i=0; i < 16; i++){
-            for(int j=0; j < 16; j++){
-                Block concrete = new Block(Block.Type.CONCRETE,loadedModels.get(Block.Type.CONCRETE),i + x*World.WORLD_X,1,j + y*World.WORLD_Y);
-                Block c2 = new Block(Block.Type.CONCRETE,loadedModels.get(Block.Type.CONCRETE),i + x*World.WORLD_X,5,j + y*World.WORLD_Y);
-                Block grass = new Block(Block.Type.GRASS,loadedModels.get(Block.Type.GRASS), i + x*World.WORLD_X, 2, j + y*World.WORLD_Y);
+        for(int i=0; i < Chunk.CHUNK_SIZE_X; i++){
+            for(int j=0; j < Chunk.CHUNK_SIZE_Y; j++){
+                Block concrete = new Block(Block.Type.CONCRETE,loadedModels.get(Block.Type.CONCRETE),i + x*Chunk.CHUNK_SIZE_X,1,j + y*Chunk.CHUNK_SIZE_Y);
+                Block c2 = new Block(Block.Type.CONCRETE,loadedModels.get(Block.Type.CONCRETE),i + x*Chunk.CHUNK_SIZE_X,5,j + y*Chunk.CHUNK_SIZE_Y);
+                Block grass = new Block(Block.Type.GRASS,loadedModels.get(Block.Type.GRASS), i + x*Chunk.CHUNK_SIZE_X, 2, j + y*Chunk.CHUNK_SIZE_Y);
 
                 chunk.putBlock(concrete);
                 //chunk.putBlock(c2);

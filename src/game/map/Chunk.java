@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 public class Chunk {
 
+    public static final int CHUNK_SIZE_X = 16;
+    public static final int CHUNK_SIZE_Y = 16;
+
     private int chunkX;
     private int chunkY;
 
