@@ -1,13 +1,15 @@
 package game.player;
 
 import assets.entities.Camera;
-import assets.entities.blocks.Block;
+import assets.entities.Entity;
 import assets.entities.collisions.AABB;
-import game.map.Chunk;
+import assets.entities.collisions.CollisionManager;
+import assets.helpers.Plane;
 import game.map.World;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
+import tools.Maths;
 
 public class Player {
 
@@ -15,11 +17,11 @@ public class Player {
     private final float PLAYER_HEIGHT = 1.7f;
 
     /*
-    * Player origin will be at xPos, yPos, zPos.
-    * The Player origin is at the 'feet' of the Player.
-    * xPos is the center x of the player.
-    * zPos is the center z of the player.
-    * yPos is the BASE of the player. It is the bottom of the player.*/
+     * Player origin will be at xPos, yPos, zPos.
+     * The Player origin is at the 'feet' of the Player.
+     * xPos is the center x of the player.
+     * zPos is the center z of the player.
+     * yPos is the BASE of the player. It is the bottom of the player.*/
     private float playerSpeed = 0.08f;
     private float xPos;
     private float yPos;
@@ -28,7 +30,12 @@ public class Player {
     private AABB collisionBox;
     private World world;
 
-    private boolean freeMode = true; //TODO set this back to false for normal fps
+    private float gravity = 0.02f;
+    private float ySpeed = 0f;
+    private float maxYSpeed = 0.5f;
+    private float jumpSpeed = 0.4f;
+
+    private boolean freeMode = false; //TODO set this back to false for normal fps
 
     public Player(float xPos, float yPos, float zPos, Camera camera){
         this.xPos = xPos;
@@ -44,6 +51,29 @@ public class Player {
         float oldY = yPos;
         float oldZ = zPos;
 
+
+
+        ySpeed -= gravity;
+        if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+            ySpeed = jumpSpeed;
+        }
+        if(Math.abs(ySpeed) >= maxYSpeed){
+            ySpeed = Maths.getSign(ySpeed) * maxYSpeed;
+        }
+
+        Entity bruh = CollisionManager.checkCollision(world, xPos, yPos, zPos,
+                Plane.Y, true, ySpeed,PLAYER_WIDTH, PLAYER_HEIGHT);
+        if(bruh == null){
+            yPos += ySpeed;
+        }else{
+            float deltaY = 0;
+            while(!bruh.getAABB().isYColliding(yPos + deltaY)){
+                deltaY += -0.001f;
+            }
+            yPos += deltaY + 0.001f;
+            ySpeed = 0;
+        }
+
         Vector3f camDir = camera.getCamDirection();
         float xUnit = camDir.getX()
                 / (float) Math.sqrt((camDir.getX() * camDir.getX()) + (camDir.getZ() * camDir.getZ()));
@@ -55,14 +85,23 @@ public class Player {
                 camera.update();
 
                 if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
-                    yPos += playerSpeed;
+                    Entity badE = CollisionManager.checkCollision(world, xPos, yPos, zPos,
+                            Plane.Y, true, playerSpeed,PLAYER_WIDTH, PLAYER_HEIGHT); //todo replace playerSpeed with jump delta
+                    if(badE == null){
+                        yPos += playerSpeed;
+                    }
                 }
                 if (Keyboard.isKeyDown(Keyboard.KEY_F)) {
-                    yPos -= playerSpeed;
+                    Entity badE = CollisionManager.checkCollision(world, xPos, yPos, zPos,
+                            Plane.Y, false, playerSpeed,PLAYER_WIDTH, PLAYER_HEIGHT);
+                    if(badE == null){
+                        yPos -= playerSpeed;
+                    }
                 }
             }
         }else{
             camera.update();
+            Mouse.setGrabbed(true);
         }
 
         if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
@@ -82,8 +121,8 @@ public class Player {
         collisionBox.updateBB(xPos - oldX, yPos - oldY, zPos - oldZ);
         cameraUpdatePosition(xPos, yPos, zPos);
 
-        /* //DEBUGGING POSITIONS
-        if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+        //DEBUGGING POSITIONS
+        if(Keyboard.isKeyDown(Keyboard.KEY_J)){
             System.out.println("Player Position: " + xPos + " " + yPos + " " + zPos);
             System.out.println("AABB Min Corner: " + collisionBox.getMinCorner().getX() + " "
                     + collisionBox.getMinCorner().getY() + " " + collisionBox.getMinCorner().getZ());
@@ -92,18 +131,6 @@ public class Player {
             System.out.println("Camera Position: " + camera.getPosition().getX() + " "
                     + camera.getPosition().getY() + " " + camera.getPosition().getZ());
             System.out.println(" ");
-        }
-        */
-
-        //------
-        //TODO below is how to get the current chunk
-        Chunk currentChunk = world.getChunks()[(int) xPos / World.WORLD_X][(int) zPos / World.WORLD_Y];
-        //------
-        //TODO check all blocks in current chunk (as well as other collidable objects i guess)
-        for(Block b : currentChunk.getBlocks()){
-            if(b.getAABB().isBoxColliding(collisionBox)){
-                System.out.println("GG IT WORKS");
-            }
         }
 
     }
@@ -114,29 +141,73 @@ public class Player {
     }
 
     private void moveForward(float xUnit, float zUnit){
-        xPos += xUnit * playerSpeed;
-        zPos += zUnit * playerSpeed;
+        moveWithCollision(true, xUnit * playerSpeed, true, zUnit * playerSpeed);
     }
     private void moveBackward(float xUnit, float zUnit){
-        xPos -= xUnit * playerSpeed;
-        zPos -= zUnit * playerSpeed;
+        moveWithCollision(false, xUnit * playerSpeed, false, zUnit * playerSpeed);
     }
     private void strafeLeft(float xUnit, float zUnit){
-        if(xUnit * zUnit >= 0){ //i.e. + + or - -
-            xPos += zUnit * playerSpeed;
-            zPos -= xUnit * playerSpeed;
-        }else{
-            xPos += zUnit * playerSpeed;
-            zPos -= xUnit * playerSpeed;
-        }
+        moveWithCollision(true, zUnit * playerSpeed, false, xUnit * playerSpeed);
     }
     private void strafeRight(float xUnit, float zUnit){
-        if(xUnit * zUnit >= 0){ //i.e. + + or - -
-            xPos -= zUnit * playerSpeed;
-            zPos += xUnit * playerSpeed;
+        moveWithCollision(false, zUnit * playerSpeed, true, xUnit * playerSpeed);
+    }
+
+    private void moveWithCollision(boolean addX, float deltaX, boolean addZ, float deltaZ){
+        Entity badE = CollisionManager.checkCollision(world,
+                xPos,yPos,zPos,
+                Plane.X,
+                addX,
+                deltaX,
+                PLAYER_WIDTH,PLAYER_HEIGHT);
+
+        if(badE == null){
+            if(addX){
+                xPos += deltaX;
+            }else{
+                xPos -= deltaX;
+            }
         }else{
-            xPos -= zUnit * playerSpeed;
-            zPos += xUnit * playerSpeed;
+            //DO PRECISION COLLISION
+            float delta = CollisionManager.getPixelPerfectDelta(badE,
+                    xPos,
+                    Plane.X,
+                    addX,
+                    deltaX,
+                    PLAYER_WIDTH, PLAYER_HEIGHT);
+            if(addX){
+                xPos += delta;
+            }else{
+                xPos -= delta;
+            }
+        }
+
+        badE = CollisionManager.checkCollision(world,
+                xPos,yPos,zPos,
+                Plane.Z,
+                addZ,
+                deltaZ,
+                PLAYER_WIDTH,PLAYER_HEIGHT);
+
+        if(badE == null){
+            if(addZ){
+                zPos += deltaZ;
+            }else{
+                zPos -= deltaZ;
+            }
+        }else{
+            //DO PRECISION COLLISION
+            float delta = CollisionManager.getPixelPerfectDelta(badE,
+                    zPos,
+                    Plane.Z,
+                    addZ,
+                    deltaZ,
+                    PLAYER_WIDTH, PLAYER_HEIGHT);
+            if(addZ){
+                zPos += delta;
+            }else{
+                zPos -= delta;
+            }
         }
     }
 

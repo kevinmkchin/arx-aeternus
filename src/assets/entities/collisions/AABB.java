@@ -56,7 +56,7 @@ public class AABB {
         float oyMax = otherBox.getMaxCorner().y;
         float oyMin = otherBox.getMinCorner().y;
         float ozMax = otherBox.getMaxCorner().z;
-        float ozMin = otherBox.getMaxCorner().z;
+        float ozMin = otherBox.getMinCorner().z;
         boolean xBound = Maths.isNumBetween(xMin, xMax, oxMax) || Maths.isNumBetween(xMin, xMax, oxMin);
         if(!xBound){return false;}
         boolean yBound = Maths.isNumBetween(yMin, yMax, oyMax) || Maths.isNumBetween(yMin, yMax, oyMin);
@@ -74,6 +74,18 @@ public class AABB {
         boolean zBound = Maths.isNumBetween(zMin, zMax, point.z);
 
         return xBound && yBound && zBound;
+    }
+
+    public boolean isXColliding(float xToCheck){
+        return xMin <= xToCheck && xMax >= xToCheck;
+    }
+
+    public boolean isYColliding(float yToCheck){
+        return yMin <= yToCheck && yMax >= yToCheck;
+    }
+
+    public boolean isZColliding(float zToCheck){
+        return zMin <= zToCheck && zMax >= zToCheck;
     }
 
     ///UPDATE BOUNDING BOX WHENEVER THE COLLISION BOX NEEDS TO MOVE (e.g. entity moved)
