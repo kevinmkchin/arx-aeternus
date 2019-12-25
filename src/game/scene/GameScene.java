@@ -3,7 +3,9 @@ package game.scene;
 import assets.entities.Entity;
 import assets.entities.blocks.Block;
 import assets.models.TexturedModel;
+import game.map.Chunk;
 import game.map.World;
+import game.map.generation.WorldGenerator;
 import game.map.persistence.SaveTool;
 import game.player.Player;
 import org.lwjgl.input.Keyboard;
@@ -15,7 +17,7 @@ public class GameScene extends Scene {
     World world;
     Player player;
 
-    private int drawDistance = 3; //in chunks
+    private int drawDistance = 2; //in chunks
 
     public GameScene(){
         initScene();
@@ -35,7 +37,7 @@ public class GameScene extends Scene {
         loadedModels.put(Block.Type.CONCRETE, makeBlockModel("acacia"));
 
 
-        //new WorldGenerator(loadedModels).generateNewWorld(); //TODO WORLD GEN
+        new WorldGenerator(loadedModels).generateNewWorld(); //TODO WORLD GEN
         world = new SaveTool().loadWorldFromSave("myJSON.json", loadedModels);
     }
 
@@ -51,12 +53,12 @@ public class GameScene extends Scene {
     }
 
     private void processWorld(){
-        int currentCamX = ((int) player.getxPos()) / World.WORLD_X;
-        int currentCamY = ((int) player.getzPos()) / World.WORLD_Y;
+        int currentCamX = ((int) player.getxPos()) / Chunk.CHUNK_SIZE_X;
+        int currentCamY = ((int) player.getzPos()) / Chunk.CHUNK_SIZE_Y;
         int xLowerBound = Math.max(currentCamX - drawDistance, 0);
-        int xUpperBound = Math.min(currentCamX + drawDistance, World.WORLD_X-1);
+        int xUpperBound = Math.min(currentCamX + drawDistance, Chunk.CHUNK_SIZE_X -1);
         int yLowerBound = Math.max(currentCamY - drawDistance, 0);
-        int yUpperBound = Math.min(currentCamY + drawDistance, World.WORLD_Y-1);
+        int yUpperBound = Math.min(currentCamY + drawDistance, Chunk.CHUNK_SIZE_Y -1);
         for(int i =xLowerBound; i <= xUpperBound; i++){
             for(int j=yLowerBound; j<= yUpperBound; j++){
                 for(Entity e : world.getChunks()[i][j].getBlocks()){

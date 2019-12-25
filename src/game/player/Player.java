@@ -22,7 +22,7 @@ public class Player {
      * xPos is the center x of the player.
      * zPos is the center z of the player.
      * yPos is the BASE of the player. It is the bottom of the player.*/
-    private float playerSpeed = 0.08f;
+    private float playerSpeed = 0.3f;//0.08f;
     private float xPos;
     private float yPos;
     private float zPos;
@@ -39,9 +39,8 @@ public class Player {
     /// MISC
     private float camOffsetFromTop = 0.1f; //how far down the cam is from the top of the player.
     private float colPrecision = 0.001f; //how precise we want collisions to be.
+    private boolean freeMode = true;
 
-
-    private boolean freeMode = false;
 
     public Player(float xPos, float yPos, float zPos, Camera camera){
         this.xPos = xPos;
@@ -113,47 +112,48 @@ public class Player {
 
     /// Manage Jumping and Gravity
     private void updateY(){
-
-        ySpeed -= gravity;
-        if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !spaceDown){
-            spaceDown = true;
-            if(canJump) {
-                ySpeed = jumpSpeed;
-            }
-        }
-
-        if(spaceDown && !Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
-            spaceDown = false;
-        }
-
-        if(Math.abs(ySpeed) >= maxYSpeed){
-            ySpeed = Maths.getSign(ySpeed) * maxYSpeed;
-        }
-
-        Entity badYEntity = CollisionManager.checkCollision(world,
-                xPos, yPos, zPos,
-                Plane.Y,
-                true,
-                ySpeed,
-                PLAYER_WIDTH, PLAYER_HEIGHT);
-        if(badYEntity == null){
-            yPos += ySpeed;
-            canJump = false;
-        }else{
-            float deltaY = 0;
-            if(ySpeed <= 0) {
-                while (!badYEntity.getAABB().isYColliding(yPos + deltaY)) {
-                    deltaY -= colPrecision;
+        if(!freeMode) {
+            ySpeed -= gravity;
+            if (Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !spaceDown) {
+                spaceDown = true;
+                if (canJump) {
+                    ySpeed = jumpSpeed;
                 }
-                canJump = true;
-                yPos += deltaY + colPrecision;
-            }else{
-                while (!badYEntity.getAABB().isYColliding(yPos + PLAYER_HEIGHT + deltaY)) {
-                    deltaY += colPrecision;
-                }
-                yPos += deltaY - colPrecision;
             }
-            ySpeed = 0;
+
+            if (spaceDown && !Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+                spaceDown = false;
+            }
+
+            if (Math.abs(ySpeed) >= maxYSpeed) {
+                ySpeed = Maths.getSign(ySpeed) * maxYSpeed;
+            }
+
+            Entity badYEntity = CollisionManager.checkCollision(world,
+                    xPos, yPos, zPos,
+                    Plane.Y,
+                    true,
+                    ySpeed,
+                    PLAYER_WIDTH, PLAYER_HEIGHT);
+            if (badYEntity == null) {
+                yPos += ySpeed;
+                canJump = false;
+            } else {
+                float deltaY = 0;
+                if (ySpeed <= 0) {
+                    while (!badYEntity.getAABB().isYColliding(yPos + deltaY)) {
+                        deltaY -= colPrecision;
+                    }
+                    canJump = true;
+                    yPos += deltaY + colPrecision;
+                } else {
+                    while (!badYEntity.getAABB().isYColliding(yPos + PLAYER_HEIGHT + deltaY)) {
+                        deltaY += colPrecision;
+                    }
+                    yPos += deltaY - colPrecision;
+                }
+                ySpeed = 0;
+            }
         }
     }
 

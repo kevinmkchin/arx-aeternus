@@ -33,8 +33,8 @@ public class CollisionManager {
                          float width, float height){
 
         ArrayList<Block> blocksToCheck = new ArrayList<>();
-        int chunkX = (int) xPos / World.WORLD_X;
-        int chunkY = (int) zPos / World.WORLD_Y;
+        int chunkX = (int) xPos / Chunk.CHUNK_SIZE_X;
+        int chunkY = (int) zPos / Chunk.CHUNK_SIZE_Y;
 
         for(int i = -1; i < 2; i++) {
             for(int j = -1; j < 2; j++) {

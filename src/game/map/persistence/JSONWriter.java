@@ -17,8 +17,8 @@ public class JSONWriter {
         JSONObject master = new JSONObject();
         JSONArray chunkArray = new JSONArray();
 
-        for (int i = 0; i<world.WORLD_X; i++) {
-            for(int j = 0; j<world.WORLD_Y; j++) {
+        for (int i = 0; i<world.WORLD_SIZE_X; i++) {
+            for(int j = 0; j<world.WORLD_SIZE_Y; j++) {
                 Chunk c = world.getChunks()[i][j];
 
                 JSONObject chunk = new JSONObject();
