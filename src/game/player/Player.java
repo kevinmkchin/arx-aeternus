@@ -26,6 +26,7 @@ public class Player {
     private float xPos;
     private float yPos;
     private float zPos;
+    private float camOffsetFromTop = 0.1f;
     private Camera camera;
     private AABB collisionBox;
     private World world;
@@ -33,7 +34,9 @@ public class Player {
     private float gravity = 0.02f;
     private float ySpeed = 0f;
     private float maxYSpeed = 0.5f;
-    private float jumpSpeed = 0.4f;
+    private float jumpSpeed = 0.25f;
+    private boolean spaceDown = false;
+    private boolean canJump = true;
 
     private boolean freeMode = false; //TODO set this back to false for normal fps
 
@@ -47,61 +50,24 @@ public class Player {
     }
 
     public void update(){
+
         float oldX = xPos;
         float oldY = yPos;
         float oldZ = zPos;
 
-
-
-        ySpeed -= gravity;
-        if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
-            ySpeed = jumpSpeed;
-        }
-        if(Math.abs(ySpeed) >= maxYSpeed){
-            ySpeed = Maths.getSign(ySpeed) * maxYSpeed;
-        }
-
-        Entity bruh = CollisionManager.checkCollision(world, xPos, yPos, zPos,
-                Plane.Y, true, ySpeed,PLAYER_WIDTH, PLAYER_HEIGHT);
-        if(bruh == null){
-            yPos += ySpeed;
-        }else{
-            float deltaY = 0;
-            while(!bruh.getAABB().isYColliding(yPos + deltaY)){
-                deltaY += -0.001f;
-            }
-            yPos += deltaY + 0.001f;
-            ySpeed = 0;
-        }
+        updateY();
 
         Vector3f camDir = camera.getCamDirection();
         float xUnit = camDir.getX()
-                / (float) Math.sqrt((camDir.getX() * camDir.getX()) + (camDir.getZ() * camDir.getZ()));
+                / (float) Math.sqrt((camDir.getX()*camDir.getX()) + (camDir.getZ()*camDir.getZ()));
         float zUnit = camDir.getZ()
-                / (float) Math.sqrt((camDir.getX() * camDir.getX()) + (camDir.getZ() * camDir.getZ()));
+                / (float) Math.sqrt((camDir.getX()*camDir.getX()) + (camDir.getZ()*camDir.getZ()));
 
-        if(freeMode){
-            if(Mouse.isButtonDown(1)) {
-                camera.update();
-
-                if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
-                    Entity badE = CollisionManager.checkCollision(world, xPos, yPos, zPos,
-                            Plane.Y, true, playerSpeed,PLAYER_WIDTH, PLAYER_HEIGHT); //todo replace playerSpeed with jump delta
-                    if(badE == null){
-                        yPos += playerSpeed;
-                    }
-                }
-                if (Keyboard.isKeyDown(Keyboard.KEY_F)) {
-                    Entity badE = CollisionManager.checkCollision(world, xPos, yPos, zPos,
-                            Plane.Y, false, playerSpeed,PLAYER_WIDTH, PLAYER_HEIGHT);
-                    if(badE == null){
-                        yPos -= playerSpeed;
-                    }
-                }
-            }
-        }else{
+        if(!freeMode){
             camera.update();
             Mouse.setGrabbed(true);
+        }else{
+            doFreeMode();
         }
 
         if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
@@ -137,7 +103,69 @@ public class Player {
 
     /// CALL AFTER PLAYER MOVES SINCE CAMERA NEEDS TO MOVE TOO
     private void cameraUpdatePosition(float newPlayerX, float newPlayerY, float newPlayerZ){
-        camera.setPosition(new Vector3f(newPlayerX, newPlayerY + PLAYER_HEIGHT, newPlayerZ));
+        camera.setPosition(new Vector3f(newPlayerX,
+                newPlayerY + PLAYER_HEIGHT - camOffsetFromTop,
+                newPlayerZ));
+    }
+
+    /// Manage Jumping and Gravity
+    private void updateY(){
+
+        ySpeed -= gravity;
+        if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !spaceDown){
+            spaceDown = true;
+            if(canJump) {
+                ySpeed = jumpSpeed;
+            }
+        }
+
+        if(spaceDown && !Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+            spaceDown = false;
+        }
+
+        if(Math.abs(ySpeed) >= maxYSpeed){
+            ySpeed = Maths.getSign(ySpeed) * maxYSpeed;
+        }
+
+        Entity badYEntity = CollisionManager.checkCollision(world,
+                xPos, yPos, zPos,
+                Plane.Y,
+                true,
+                ySpeed,
+                PLAYER_WIDTH, PLAYER_HEIGHT);
+        if(badYEntity == null){
+            yPos += ySpeed;
+            canJump = false;
+        }else{
+            float deltaY = 0;
+            if(ySpeed <= 0) {
+                while (!badYEntity.getAABB().isYColliding(yPos + deltaY)) {
+                    deltaY -= 0.001f;
+                }
+                canJump = true;
+                yPos += deltaY + 0.001f;
+            }else{
+                while (!badYEntity.getAABB().isYColliding(yPos + PLAYER_HEIGHT + deltaY)) {
+                    deltaY += 0.001f;
+                }
+                yPos += deltaY - 0.001f;
+            }
+            ySpeed = 0;
+        }
+    }
+
+    /// Free Camera Mode
+    private void doFreeMode(){
+        if(Mouse.isButtonDown(1)) {
+            camera.update();
+
+            if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
+                yPos += playerSpeed;
+            }
+            if (Keyboard.isKeyDown(Keyboard.KEY_F)) {
+                yPos -= playerSpeed;
+            }
+        }
     }
 
     private void moveForward(float xUnit, float zUnit){
