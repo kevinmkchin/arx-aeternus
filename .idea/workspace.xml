@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="rapture:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5deda3c1-186b-49c8-a1d2-4c23c797d6f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rapture/assets/entities/blocks/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rapture/assets/entities/blocks/Block.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/rapture/game/map/generation/WorldGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rapture/game/map/generation/WorldGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rapture/assets/entities/Camera.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rapture/assets/entities/Camera.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rapture/assets/entities/collisions/AABB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rapture/assets/entities/collisions/AABB.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/rapture/game/player/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rapture/game/player/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/rapture/game/scene/GameScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rapture/game/scene/GameScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/entities/blocks/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/entities/blocks/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/map/generation/WorldGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/map/generation/WorldGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/rapture/tools/Maths.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/rapture/tools/Maths.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/textures/grass.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/textures/grass.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/entities/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/entities/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/entities/collisions/AABB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/entities/collisions/AABB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/player/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/scene/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/scene/GameScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tools/Maths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/Maths.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,8 +45,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/game/scene/GameScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+            <state relative-caret-position="100">
+              <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assets/entities/Camera.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -49,20 +69,27 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/game/player/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2880">
-              <caret line="144" column="5" selection-start-line="144" selection-start-column="5" selection-end-line="144" selection-end-column="5" />
+            <state relative-caret-position="420">
+              <caret line="69" column="48" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4621#4622#0" expanded="true" />
-                <element signature="e#4649#4650#0" expanded="true" />
-                <element signature="e#4690#4691#0" expanded="true" />
-                <element signature="e#4724#4725#0" expanded="true" />
-                <element signature="e#4502#4503#0" expanded="true" />
-                <element signature="e#4529#4530#0" expanded="true" />
-                <element signature="e#4558#4559#0" expanded="true" />
-                <element signature="e#4585#4586#0" expanded="true" />
-                <element signature="e#4614#4615#0" expanded="true" />
-                <element signature="e#4641#4642#0" expanded="true" />
+                <element signature="e#7384#7385#0" expanded="true" />
+                <element signature="e#7458#7459#0" expanded="true" />
+                <element signature="e#7515#7516#0" expanded="true" />
+                <element signature="e#7571#7572#0" expanded="true" />
+                <element signature="e#7627#7628#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assets/entities/collisions/CollisionManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-456">
+              <caret line="85" column="30" selection-start-line="85" selection-start-column="30" selection-end-line="85" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,9 +100,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>width</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -87,7 +120,6 @@
         <option value="$PROJECT_DIR$/src/assets/models/ModelLoader.java" />
         <option value="$PROJECT_DIR$/src/assets/models/ModelTexture.java" />
         <option value="$PROJECT_DIR$/src/assets/models/TexturedModel.java" />
-        <option value="$PROJECT_DIR$/src/tools/Maths.java" />
         <option value="$PROJECT_DIR$/src/assets/shaders/ShaderProgram.java" />
         <option value="$PROJECT_DIR$/src/assets/entities/Light.java" />
         <option value="$PROJECT_DIR$/src/assets/shaders/fragmentShader.txt" />
@@ -110,14 +142,18 @@
         <option value="$PROJECT_DIR$/src/renderEngine/DisplayManager.java" />
         <option value="$PROJECT_DIR$/src/feafe.java" />
         <option value="$PROJECT_DIR$/src/game/map/World.java" />
-        <option value="$PROJECT_DIR$/src/assets/entities/Camera.java" />
         <option value="$PROJECT_DIR$/src/renderEngine/MainRenderer.java" />
         <option value="$PROJECT_DIR$/src/game/MainGameLoop.java" />
-        <option value="$PROJECT_DIR$/src/assets/entities/collisions/AABB.java" />
-        <option value="$PROJECT_DIR$/src/game/scene/GameScene.java" />
         <option value="$PROJECT_DIR$/src/assets/entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/assets/entities/blocks/Block.java" />
         <option value="$PROJECT_DIR$/src/game/map/generation/WorldGenerator.java" />
+        <option value="$PROJECT_DIR$/src/assets/helpers/Plane.java" />
+        <option value="$PROJECT_DIR$/src/tools/test.java" />
+        <option value="$PROJECT_DIR$/src/tools/Maths.java" />
+        <option value="$PROJECT_DIR$/src/assets/entities/collisions/AABB.java" />
+        <option value="$PROJECT_DIR$/src/assets/entities/Camera.java" />
+        <option value="$PROJECT_DIR$/src/assets/entities/collisions/CollisionManager.java" />
+        <option value="$PROJECT_DIR$/src/game/scene/GameScene.java" />
         <option value="$PROJECT_DIR$/src/game/player/Player.java" />
       </list>
     </option>
@@ -135,8 +171,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -189,34 +223,29 @@
               <item name="rapture" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="map" type="462c0819:PsiDirectoryNode" />
+              <item name="player" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="rapture" type="b2602c69:ProjectViewProjectNode" />
               <item name="rapture" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="scene" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rapture" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rapture" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderEngine" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../rapture misc/backups/rapture 12.21.2019 pixel perfect demo" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
@@ -281,9 +310,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tools.test" />
+      <module name="rapture" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tools.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainGameLoop" />
+        <item itemvalue="Application.test" />
         <item itemvalue="Application.feafe" />
         <item itemvalue="Application.JSONWriter" />
       </list>
@@ -318,11 +361,17 @@
       <workItem from="1576483235358" duration="625000" />
       <workItem from="1576827289282" duration="7877000" />
       <workItem from="1576919923106" duration="7693000" />
+      <workItem from="1576928468217" duration="257000" />
+      <workItem from="1576928842348" duration="1307000" />
+      <workItem from="1576971237226" duration="13931000" />
+      <workItem from="1576994142735" duration="306000" />
+      <workItem from="1577105670644" duration="6887000" />
+      <workItem from="1577263700459" duration="3428000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90906000" />
+    <option name="totallyTimeSpent" value="117022000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -335,8 +384,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30201343" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3295302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -447,16 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tools/Maths.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="24" column="45" lean-forward="true" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -574,20 +614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/entities/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1232#1233#0" expanded="true" />
-            <element signature="e#1260#1261#0" expanded="true" />
-            <element signature="e#1288#1289#0" expanded="true" />
-            <element signature="e#1314#1315#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/entities/Light.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
@@ -629,16 +655,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="888">
           <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/entities/collisions/AABB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-522">
-          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -712,20 +728,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/scene/GameScene.java">
+    <entry file="file://$PROJECT_DIR$/src/assets/helpers/Plane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        <state relative-caret-position="180">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/entities/blocks/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/entities/blocks/Block.java">
+    <entry file="file://$PROJECT_DIR$/src/tools/Maths.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-79">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="424">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2592#2593#0" expanded="true" />
+            <element signature="e#2639#2640#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tools/test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/entities/collisions/AABB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-380">
+          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2803#2804#0" expanded="true" />
+            <element signature="e#2862#2863#0" expanded="true" />
+            <element signature="e#2912#2913#0" expanded="true" />
+            <element signature="e#2971#2972#0" expanded="true" />
+            <element signature="e#3021#3022#0" expanded="true" />
+            <element signature="e#3080#3081#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/entities/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/scene/GameScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/entities/collisions/CollisionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-456">
+          <caret line="85" column="30" selection-start-line="85" selection-start-column="30" selection-end-line="85" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -734,20 +812,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/player/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2880">
-          <caret line="144" column="5" selection-start-line="144" selection-start-column="5" selection-end-line="144" selection-end-column="5" />
+        <state relative-caret-position="420">
+          <caret line="69" column="48" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4621#4622#0" expanded="true" />
-            <element signature="e#4649#4650#0" expanded="true" />
-            <element signature="e#4690#4691#0" expanded="true" />
-            <element signature="e#4724#4725#0" expanded="true" />
-            <element signature="e#4502#4503#0" expanded="true" />
-            <element signature="e#4529#4530#0" expanded="true" />
-            <element signature="e#4558#4559#0" expanded="true" />
-            <element signature="e#4585#4586#0" expanded="true" />
-            <element signature="e#4614#4615#0" expanded="true" />
-            <element signature="e#4641#4642#0" expanded="true" />
+            <element signature="e#7384#7385#0" expanded="true" />
+            <element signature="e#7458#7459#0" expanded="true" />
+            <element signature="e#7515#7516#0" expanded="true" />
+            <element signature="e#7571#7572#0" expanded="true" />
+            <element signature="e#7627#7628#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -758,10 +831,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>rapture:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -804,7 +879,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>cataclysm-game</last-edited>
+          <last-edited>rapture</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
