@@ -6,6 +6,7 @@ import assets.models.TexturedModel;
 import game.map.World;
 import game.map.persistence.SaveTool;
 import game.player.Player;
+import org.lwjgl.input.Keyboard;
 
 import java.util.HashMap;
 
@@ -14,14 +15,14 @@ public class GameScene extends Scene {
     World world;
     Player player;
 
-    private int drawDistance = 3;
+    private int drawDistance = 3; //in chunks
 
     public GameScene(){
         initScene();
         setCamera();
         setLighting(1,4,1.3f,1,1,1,0.2f,true);
 
-        player = new Player(1.5f,10,1.5f, camera);
+        player = new Player(1.5f,3f,1.5f, camera);
         player.setWorld(world);
     }
 
@@ -42,6 +43,9 @@ public class GameScene extends Scene {
     public void updateScene() {
         player.update();
 
+        if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
+            System.exit(0);
+        }
 
         processWorld();
     }
