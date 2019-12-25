@@ -38,9 +38,11 @@ public class WorldGenerator {
         for(int i=0; i < 16; i++){
             for(int j=0; j < 16; j++){
                 Block concrete = new Block(Block.Type.CONCRETE,loadedModels.get(Block.Type.CONCRETE),i + x*World.WORLD_X,1,j + y*World.WORLD_Y);
+                Block c2 = new Block(Block.Type.CONCRETE,loadedModels.get(Block.Type.CONCRETE),i + x*World.WORLD_X,5,j + y*World.WORLD_Y);
                 Block grass = new Block(Block.Type.GRASS,loadedModels.get(Block.Type.GRASS), i + x*World.WORLD_X, 2, j + y*World.WORLD_Y);
 
                 chunk.putBlock(concrete);
+                //chunk.putBlock(c2);
                 if(new Random().nextInt(2) == 1) {
                     chunk.putBlock(grass);
                 }
