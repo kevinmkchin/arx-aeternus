@@ -58,4 +58,14 @@ public class Maths {
         return min <= num && num <= max;
     }
 
+    /// returns 1 or -1
+    public static int getSign(float n){
+        int sign = (int) (n / Math.abs(n));
+        if(Math.abs(sign) != 1){
+            return 1;
+        }else{
+            return sign;
+        }
+    }
+
 }
