@@ -7,7 +7,6 @@ import game.map.World;
 import game.map.persistence.SaveTool;
 
 import java.util.HashMap;
-import java.util.Random;
 
 public class WorldGenerator {
 
@@ -24,7 +23,8 @@ public class WorldGenerator {
         for(int i = 0; i < world.WORLD_SIZE_X; i++){
             for(int j = 0; j< world.WORLD_SIZE_Y; j++){
                 Chunk chunk = generateChunk(i, j);
-                world.getChunks()[i][j] = (chunk);
+                new ChunkGeneration().growTrees(chunk, loadedModels);
+                world.getChunks()[i][j] = chunk;
             }
         }
 
@@ -37,15 +37,15 @@ public class WorldGenerator {
 
         for(int i=0; i < Chunk.CHUNK_SIZE_X; i++){
             for(int j=0; j < Chunk.CHUNK_SIZE_Y; j++){
-                Block concrete = new Block(Block.Type.CONCRETE,loadedModels.get(Block.Type.CONCRETE),i + x*Chunk.CHUNK_SIZE_X,1,j + y*Chunk.CHUNK_SIZE_Y);
-                Block c2 = new Block(Block.Type.CONCRETE,loadedModels.get(Block.Type.CONCRETE),i + x*Chunk.CHUNK_SIZE_X,5,j + y*Chunk.CHUNK_SIZE_Y);
-                Block grass = new Block(Block.Type.GRASS,loadedModels.get(Block.Type.GRASS), i + x*Chunk.CHUNK_SIZE_X, 2, j + y*Chunk.CHUNK_SIZE_Y);
+                //Block concrete = new Block(Block.Type.CONCRETE,loadedModels.get(Block.Type.CONCRETE),i + x*Chunk.CHUNK_SIZE_X,1,j + y*Chunk.CHUNK_SIZE_Y);
+                //Block c2 = new Block(Block.Type.CONCRETE,loadedModels.get(Block.Type.CONCRETE),i + x*Chunk.CHUNK_SIZE_X,5,j + y*Chunk.CHUNK_SIZE_Y);
+                Block grass = new Block(Block.Type.GRASS,loadedModels.get(Block.Type.GRASS), i + x*Chunk.CHUNK_SIZE_X, 1, j + y*Chunk.CHUNK_SIZE_Y);
+                chunk.putBlock(grass);
 
-                chunk.putBlock(concrete);
                 //chunk.putBlock(c2);
-                if(new Random().nextInt(2) == 1) {
-                    chunk.putBlock(grass);
-                }
+//                if(new Random().nextInt(2) == 1) {
+//                    chunk.putBlock(grass);
+//                }
             }
         }
 

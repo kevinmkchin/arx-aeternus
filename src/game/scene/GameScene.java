@@ -35,6 +35,7 @@ public class GameScene extends Scene {
 
         loadedModels.put(Block.Type.GRASS, makeBlockModel("grass"));
         loadedModels.put(Block.Type.CONCRETE, makeBlockModel("acacia"));
+        loadedModels.put(Block.Type.LEAVES, makeBlockModel("leaves"));
 
 
         new WorldGenerator(loadedModels).generateNewWorld(); //TODO WORLD GEN
@@ -56,9 +57,9 @@ public class GameScene extends Scene {
         int currentCamX = ((int) player.getxPos()) / Chunk.CHUNK_SIZE_X;
         int currentCamY = ((int) player.getzPos()) / Chunk.CHUNK_SIZE_Y;
         int xLowerBound = Math.max(currentCamX - drawDistance, 0);
-        int xUpperBound = Math.min(currentCamX + drawDistance, Chunk.CHUNK_SIZE_X -1);
+        int xUpperBound = Math.min(currentCamX + drawDistance, World.WORLD_SIZE_X -1);
         int yLowerBound = Math.max(currentCamY - drawDistance, 0);
-        int yUpperBound = Math.min(currentCamY + drawDistance, Chunk.CHUNK_SIZE_Y -1);
+        int yUpperBound = Math.min(currentCamY + drawDistance, World.WORLD_SIZE_Y -1);
         for(int i =xLowerBound; i <= xUpperBound; i++){
             for(int j=yLowerBound; j<= yUpperBound; j++){
                 for(Entity e : world.getChunks()[i][j].getBlocks()){
