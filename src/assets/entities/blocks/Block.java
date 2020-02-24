@@ -9,7 +9,8 @@ public class Block extends Entity {
     public enum Type {
         GRASS,
         CONCRETE,
-        DIRT
+        DIRT,
+        LEAVES
     }
 
     private Type type;
