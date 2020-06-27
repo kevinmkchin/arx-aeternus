@@ -2,6 +2,7 @@ package game.map.generation;
 
 import assets.entities.blocks.Block;
 import assets.models.TexturedModel;
+import game.AMGameplayStatics;
 import game.map.Chunk;
 import game.map.World;
 
@@ -10,9 +11,11 @@ import java.util.HashMap;
 public class WorldGenerator {
 
     HashMap<Block.Type, TexturedModel> loadedModels;
+    AMGameplayStatics gameplayStatics;
 
-    public WorldGenerator(HashMap<Block.Type, TexturedModel> loadedModels){
+    public WorldGenerator(HashMap<Block.Type, TexturedModel> loadedModels, AMGameplayStatics gameplayStatics){
         this.loadedModels = loadedModels;
+        this.gameplayStatics = gameplayStatics;
     }
 
     public World generateNewWorld(){
@@ -44,19 +47,21 @@ public class WorldGenerator {
                     Block concrete = new Block(Block.Type.CONCRETE, loadedModels.get(Block.Type.CONCRETE),
                             (i + x*Chunk.CHUNK_SIZE_X) * World.CUBE_SIZE,
                             4,
-                            (j + y*Chunk.CHUNK_SIZE_Y) * World.CUBE_SIZE);
+                            (j + y*Chunk.CHUNK_SIZE_Y) * World.CUBE_SIZE,
+                            gameplayStatics);
                     chunk.putBlock(concrete);
                     concrete = new Block(Block.Type.CONCRETE, loadedModels.get(Block.Type.CONCRETE),
                             (i + x*Chunk.CHUNK_SIZE_X) * World.CUBE_SIZE,
                             8,
-                            (j + y*Chunk.CHUNK_SIZE_Y) * World.CUBE_SIZE);
+                            (j + y*Chunk.CHUNK_SIZE_Y) * World.CUBE_SIZE,
+                            gameplayStatics);
                     chunk.putBlock(concrete);
                 }
                 else if(thisOne == 0)
                 {
-                    Block grass = new Block(Block.Type.GRASS,loadedModels.get(Block.Type.GRASS), (i + x*Chunk.CHUNK_SIZE_X) * 4, 0, (j + y*Chunk.CHUNK_SIZE_Y) * 4);
+                    Block grass = new Block(Block.Type.GRASS,loadedModels.get(Block.Type.GRASS), (i + x*Chunk.CHUNK_SIZE_X) * 4, 0, (j + y*Chunk.CHUNK_SIZE_Y) * 4, gameplayStatics);
                     chunk.putBlock(grass);
-                    grass = new Block(Block.Type.GRASS,loadedModels.get(Block.Type.GRASS), (i + x*Chunk.CHUNK_SIZE_X) * 4, 12, (j + y*Chunk.CHUNK_SIZE_Y) * 4);
+                    grass = new Block(Block.Type.GRASS,loadedModels.get(Block.Type.GRASS), (i + x*Chunk.CHUNK_SIZE_X) * 4, 12, (j + y*Chunk.CHUNK_SIZE_Y) * 4, gameplayStatics);
                     chunk.putBlock(grass);
                 }
 

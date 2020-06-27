@@ -1,6 +1,7 @@
 package game;
 
 import assets.AMGUI;
+import assets.DamageableEntity;
 import assets.entities.Camera;
 import assets.entities.Entity;
 import game.map.World;
@@ -28,6 +29,7 @@ public class AMGameplayStatics {
     private MainRenderer GlobalMainRenderer;
     private ModelLoader GlobalModelLoader;
     private ArrayList<AMGUI> GlobalGuis;
+    private ArrayList<DamageableEntity> EntitiesToRemove;
 
 
     public AMGameplayStatics()
@@ -37,6 +39,7 @@ public class AMGameplayStatics {
         EntityMap.put(Tags.ENEMIES, new ArrayList<>());
         EntityMap.put(Tags.PICKUPS, new ArrayList<>());
         GlobalGuis = new ArrayList<>();
+        EntitiesToRemove = new ArrayList<>();
     }
 
     public ArrayList<Entity> GetEntitiesWithTag(Tags Tag)
@@ -93,5 +96,8 @@ public class AMGameplayStatics {
         GlobalGuis.add(newGui);
     }
 
+    public ArrayList<DamageableEntity> getEntitiesToRemove() {
+        return EntitiesToRemove;
+    }
 
 }

@@ -62,7 +62,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/res/guis" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/res/textures" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -71,19 +71,20 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Dev\rapture\res\textures" />
       <recent name="C:\Dev\ProjectMachina\res\guis" />
       <recent name="C:\Dev\ProjectMachina\res\textures" />
-      <recent name="C:\Users\kevin\Desktop\rapture\lib\jars" />
       <recent name="C:\Users\kevin\Desktop\cataclysm-game\res\textures" />
-      <recent name="C:\Users\kevin\Desktop\cataclysm-game\src\assets\shaders" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="assets.shaders" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Dev\rapture\res\textures" />
       <recent name="C:\Dev\ProjectMachina\res\guis" />
       <recent name="C:\Dev\ProjectMachina\res\textures" />
+      <recent name="C:\Users\kevin\Desktop\rapture\lib\jars" />
       <recent name="C:\Users\kevin\Desktop\cataclysm-game\res\textures" />
     </key>
   </component>
@@ -204,10 +205,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="734" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1592886641453" />
-    <state x="1274" y="269" key="#com.intellij.ide.util.MemberChooser" timestamp="1592888813585">
+    <state x="1274" y="269" key="#com.intellij.ide.util.MemberChooser" timestamp="1593242628058">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1274" y="269" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1592888813585" />
+    <state x="1274" y="269" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593242628058" />
     <state x="556" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1592128730226">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -220,38 +221,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1591673562660" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1593233225831">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1593245617265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593233225831" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1593233225831">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593245617265" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1593245617265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593233225831" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1593233225831">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593245617265" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1593245617265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593233225831" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1593233225831">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593245617265" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1593245617265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593233225831" />
-    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1592895093251">
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593245617265" />
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1593244827040">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1592895093251" />
-    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1592895093251">
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593244827040" />
+    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1593244827039">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1592895093251" />
-    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1592895093251">
+    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593244827039" />
+    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1593244827039">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1592895093251" />
-    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1592895093251">
+    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593244827039" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1593244827039">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1592895093251" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593244827039" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1591673845494">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -260,10 +261,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1592019654633" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1592168631457">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1593239912974">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1592168631457" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.-118.1050.1640@0.0.1920.1040" timestamp="1593239912974" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

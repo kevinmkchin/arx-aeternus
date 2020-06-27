@@ -48,12 +48,20 @@ public class ModelRenderer {
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL11.glTexParameterf(GL11.GL_TEXTURE_2D, SGL.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST); //disables bilinear filtering
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getTexture().getID());
+//
+//        //enable alpha blending
+//        GL11.glEnable(GL11.GL_BLEND);
+//        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
     }
 
     private void unbindTexturedModel(){
         GL20.glDisableVertexAttribArray(0);
         GL20.glDisableVertexAttribArray(1);
         GL20.glDisableVertexAttribArray(2);
+
+        //disable alpha blending
+        //GL11.glDisable(GL11.GL_BLEND);
+
         GL30.glBindVertexArray(0);
     }
 

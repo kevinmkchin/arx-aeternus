@@ -2,6 +2,7 @@ package game.map.persistence;
 
 import assets.entities.blocks.Block;
 import assets.models.TexturedModel;
+import game.AMGameplayStatics;
 import game.map.Chunk;
 import game.map.World;
 import org.json.JSONArray;
@@ -16,9 +17,11 @@ import java.util.HashMap;
 public class JSONReader {
 
     HashMap<Block.Type, TexturedModel> loadedModels;
+    AMGameplayStatics gameplayStatics;
 
-    public JSONReader(HashMap<Block.Type, TexturedModel> loadedModels){
+    public JSONReader(HashMap<Block.Type, TexturedModel> loadedModels, AMGameplayStatics gameplayStatics){
         this.loadedModels = loadedModels;
+        this.gameplayStatics = gameplayStatics;
     }
 
     public World loadWorld(String saveFilePath){
@@ -49,7 +52,7 @@ public class JSONReader {
             int y = (int) block.get("y");
             int z = (int) block.get("z");
 
-            Block blockToAdd = new Block(type,loadedModels.get(type),x,y,z);
+            Block blockToAdd = new Block(type,loadedModels.get(type),x,y,z, gameplayStatics);
 
             chunk.putBlock(blockToAdd);
         }

@@ -12,68 +12,68 @@ import renderEngine.ModelLoader;
 
 public abstract class Scene {
 
-    //    float[] cubeVertices = {
-//            0,1,0,
-//            0,0,0,
-//            1,0,0,
-//            1,1,0,
-//
-//            0,1,1,
-//            0,0,1,
-//            1,0,1,
-//            1,1,1,
-//
-//            1,1,0,
-//            1,0,0,
-//            1,0,1,
-//            1,1,1,
-//
-//            0,1,0,
-//            0,0,0,
-//            0,0,1,
-//            0,1,1,
-//
-//            0,1,1,
-//            0,1,0,
-//            1,1,0,
-//            1,1,1,
-//
-//            0,0,1,
-//            0,0,0,
-//            1,0,0,
-//            1,0,1
-//    };
+        float[] cubeVertices = {
+            0,1,0,
+            0,0,0,
+            1,0,0,
+            1,1,0,
 
-    float[] cubeVertices = {
-            -0.3f,1.7f,-0.3f,
-            -0.3f,0,-0.3f,
-            0.3f,0,-0.3f,
-            0.3f,1.7f,-0.3f,
+            0,1,1,
+            0,0,1,
+            1,0,1,
+            1,1,1,
 
-            -0.3f,1.7f,0.3f,
-            -0.3f,0,0.3f,
-            0.3f,0,0.3f,
-            0.3f,1.7f,0.3f,
+            1,1,0,
+            1,0,0,
+            1,0,1,
+            1,1,1,
 
-            0.3f,1.7f,-0.3f,
-            0.3f,0,-0.3f,
-            0.3f,0,0.3f,
-            0.3f,1.7f,0.3f,
+            0,1,0,
+            0,0,0,
+            0,0,1,
+            0,1,1,
 
-            -0.3f,1.7f,-0.3f,
-            -0.3f,0,-0.3f,
-            -0.3f,0,0.3f,
-            -0.3f,1.7f,0.3f,
+            0,1,1,
+            0,1,0,
+            1,1,0,
+            1,1,1,
 
-            -0.3f,1.7f,0.3f,
-            -0.3f,1,-0.3f,
-            0.3f,1,-0.3f,
-            0.3f,1.7f,0.3f,
+            0,0,1,
+            0,0,0,
+            1,0,0,
+            1,0,1
+    };
 
-            -0.3f,0,0.3f,
-            -0.3f,0,-0.3f,
-            0.3f,0,-0.3f,
-            0.3f,0,0.3f
+    float[] rectangleVertices = {
+            -0.45f,1.7f,-0.45f,
+            -0.45f,0,-0.45f,
+            0.45f,0,-0.45f,
+            0.45f,1.7f,-0.45f,
+
+            -0.45f,1.7f,0.45f,
+            -0.45f,0,0.45f,
+            0.45f,0,0.45f,
+            0.45f,1.7f,0.45f,
+
+            0.45f,1.7f,-0.45f,
+            0.45f,0,-0.45f,
+            0.45f,0,0.45f,
+            0.45f,1.7f,0.45f,
+
+            -0.45f,1.7f,-0.45f,
+            -0.45f,0,-0.45f,
+            -0.45f,0,0.45f,
+            -0.45f,1.7f,0.45f,
+
+            -0.45f,1.7f,0.45f,
+            -0.45f,1,-0.45f,
+            0.45f,1,-0.45f,
+            0.45f,1.7f,0.45f,
+
+            -0.45f,0,0.45f,
+            -0.45f,0,-0.45f,
+            0.45f,0,-0.45f,
+            0.45f,0,0.45f
     };
 
     float[] cubeTextureCoords = {
@@ -109,32 +109,38 @@ public abstract class Scene {
             1,0.5f
     };
 
-//    float[] cubeTextureCoords = {
-//            0,1
-//            ,1,1
-//            ,0,0
-//            ,1,0
-//            ,0,1
-//            ,1,1
-//            ,0,0
-//            ,1,0
-//            ,0,1
-//            ,1,1
-//            ,0,0
-//            ,1,0
-//            ,0,1
-//            ,1,1
-//            ,0,0
-//            ,1,0
-//            ,0,1
-//            ,1,1
-//            ,0,0
-//            ,1,0
-//            ,0,1
-//            ,1,1
-//            ,0,0
-//            ,1,0
-//    };
+    float[] rectTextureCoords = {
+
+            0,0,
+            0,1,
+            0.53125f,1,
+            0.53125f,0,
+
+            0,0,
+            0,1,
+            0.53125f,1,
+            0.53125f,0,
+
+            0,0,
+            0,1,
+            0.53125f,1,
+            0.53125f,0,
+
+            0,0,
+            0,1,
+            0.53125f,1,
+            0.53125f,0,
+
+            0,0,
+            0,0,
+            0,0,
+            0,0,
+
+            0,0,
+            0,0,
+            0,0,
+            0,0,
+    };
 
     float[] cubeNormals = {
             0,0,-1,
@@ -182,11 +188,6 @@ public abstract class Scene {
             20,21,23,
             23,21,22
     };
-
-//    int[] cubeIndices = {
-//        1,3,2,3,4,2,5,7,6,7,8,6,9,11,10,11,12,10,13,15,14,15,16,14,17,19,18,19,20,18,21,23,22,23,24,22
-//    };
-
 
 
     /// ----- MOST IMPORTANT CLASS OF THE GAME -----
@@ -248,6 +249,13 @@ public abstract class Scene {
     protected TexturedModel makeBlockModel(String blockTextureName){
         RawModel model = modelLoader.loadToVAO(cubeVertices, cubeTextureCoords, cubeNormals, cubeIndices);
         ModelTexture texture = new ModelTexture(modelLoader.loadTexture(blockTextureName));
+        return new TexturedModel(model, texture);
+    }
+
+    protected TexturedModel makeEntityModel(String entityTextureName)
+    {
+        RawModel model = modelLoader.loadToVAO(rectangleVertices, rectTextureCoords, cubeNormals, cubeIndices);
+        ModelTexture texture = new ModelTexture(modelLoader.loadTexture(entityTextureName));
         return new TexturedModel(model, texture);
     }
 
