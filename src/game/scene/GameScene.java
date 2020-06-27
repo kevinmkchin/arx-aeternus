@@ -42,7 +42,7 @@ public class GameScene extends Scene {
         HashMap<Block.Type, TexturedModel> loadedModels = new HashMap<>();
 
         //Load Textures to Models
-        loadedModels.put(Block.Type.GRASS, makeBlockModel("tflor00"));
+        loadedModels.put(Block.Type.GRASS, makeBlockModel("cflor03"));
         loadedModels.put(Block.Type.CONCRETE, makeBlockModel("cfbrick1"));
         AMGUI crosshair = new AMGUI(modelLoader.loadGUI("crosshair"), new Vector2f(0,0), new Vector2f(0.018f, 0.032f));
         GameplayStatics.addGlobalGui(crosshair);
