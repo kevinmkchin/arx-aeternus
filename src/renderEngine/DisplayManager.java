@@ -1,11 +1,15 @@
 package renderEngine;
 
-import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.ContextAttribs;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.PixelFormat;
+import org.newdawn.slick.opengl.ImageIOImageData;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.nio.ByteBuffer;
 
 public class DisplayManager {
 
@@ -25,11 +29,11 @@ public class DisplayManager {
             Display.create(new PixelFormat().withSamples(0), attribs); //TODO MULTISAMPLING ANTIALIASING
             Display.setTitle("ARX AETERNUS");
 
+
             Mouse.create();
-        } catch (LWJGLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static void updateDisplay(){

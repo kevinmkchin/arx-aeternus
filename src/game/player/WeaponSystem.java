@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 public class WeaponSystem {
 
+
+
+    // I wrote this for absolutely no reason because I can just get the direction that the camera is facing....
 //    public void CenterRaycast(Matrix4f InProjectionMatrix, Matrix4f InViewMatrix)
 //    {
 //        //4d homogeneous clip coordinates
@@ -38,6 +41,11 @@ public class WeaponSystem {
 //        System.out.println(RayWorld.toString());
 //    }
 
+    public boolean bPendingFire;
+
+    private int FireInterval = 20;
+    private int FireCooldown = 0;
+
     AMGameplayStatics GameplayStatics;
 
     public WeaponSystem(AMGameplayStatics GameplayStatics)
@@ -45,8 +53,32 @@ public class WeaponSystem {
         this.GameplayStatics = GameplayStatics;
 
         //TODO
-        AMGUI pistol = new AMGUI(GameplayStatics.getGlobalModelLoader().loadGUI("colta0"), new Vector2f(0.45f,-0.63f), new Vector2f(0.27f, 0.48f));
+        AMGUI pistol = new AMGUI(GameplayStatics.getGlobalModelLoader().loadGUI("autga0"), new Vector2f(0.67f,-0.63f), new Vector2f(0.5f, 0.48f));
         GameplayStatics.addGlobalGui(pistol);
+    }
+
+    public void StartUse()
+    {
+        bPendingFire = true;
+    }
+
+    public void StopUse()
+    {
+        bPendingFire = false;
+        FireCooldown = 0;
+    }
+
+    public void Update()
+    {
+        if(bPendingFire && FireCooldown <= 0)
+        {
+            CenterRaycast(15000);
+            FireCooldown = FireInterval;
+        }
+        else
+        {
+            --FireCooldown;
+        }
     }
 
     public void CenterRaycast(int RayLengthInCM)
@@ -70,11 +102,11 @@ public class WeaponSystem {
 
             for(Entity e : EnemiesToCheck)
             {
+                //DO DAMAGE
                 if(e.getAABB().isPointColliding(LineEndPoint))
                 {
-                    System.out.println("hit");
                     DamageableEntity de = (DamageableEntity) e;
-                    de.AffectHealth(-1.f);
+                    de.AffectHealth(-30.f);
 
                     return;
                 }

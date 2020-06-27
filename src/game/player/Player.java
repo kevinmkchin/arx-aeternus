@@ -99,9 +99,23 @@ public class Player {
             strafeRight(xUnit, zUnit);
         }
 
-        if(Keyboard.isKeyDown(Keyboard.KEY_G))
+        if(Mouse.isButtonDown(0))
         {
-            weaponSystem.CenterRaycast(15000);
+            if(!weaponSystem.bPendingFire)
+            {
+                weaponSystem.StartUse();
+            }
+            else
+            {
+                weaponSystem.Update();
+            }
+        }
+        else
+        {
+            if(weaponSystem.bPendingFire)
+            {
+                weaponSystem.StopUse();
+            }
         }
 
         /// UPDATE THE AABB AND CAMERA
