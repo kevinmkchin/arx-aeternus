@@ -2,9 +2,12 @@ package assets.entities;
 
 import assets.entities.collisions.AABB;
 import assets.models.TexturedModel;
+import game.AMGameplayStatics;
 import org.lwjgl.util.vector.Vector3f;
 
 public class Entity {
+
+    protected AMGameplayStatics GameplayStatics;
 
     private TexturedModel model;
     private Vector3f position;
@@ -13,13 +16,14 @@ public class Entity {
 
     private AABB collisionBox = null;
 
-    public Entity(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
+    public Entity(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale, AMGameplayStatics InGameplayStatics) {
         this.model = model;
         this.position = position;
         this.rotX = rotX;
         this.rotY = rotY;
         this.rotZ = rotZ;
         this.scale = scale;
+        GameplayStatics = InGameplayStatics;
     }
 
     public void increasePosition(float dx, float dy, float dz){

@@ -38,9 +38,9 @@ public class Player {
     private boolean spaceDown = false;
     private boolean canJump = true;
     /// MISC
-    private float camOffsetFromTop = 0.1f; //how far down the cam is from the top of the player.
+    private float camOffsetFromTop = 0.25f; //how far down the cam is from the top of the player.
     private float colPrecision = 0.001f; //how precise we want collisions to be.
-    private boolean freeMode = true; //TODO sets freemode
+    private boolean freeMode = false; //TODO sets freemode
 
 
     AMGameplayStatics GameplayStatics;

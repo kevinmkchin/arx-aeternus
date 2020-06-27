@@ -1,6 +1,7 @@
 package game.scene;
 
 import assets.AMGUI;
+import assets.entities.Enemy;
 import assets.entities.Entity;
 import assets.entities.blocks.Block;
 import assets.models.TexturedModel;
@@ -11,6 +12,7 @@ import game.map.generation.WorldGenerator;
 import game.player.Player;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
+import org.lwjgl.util.vector.Vector3f;
 import tools.AMVector2;
 
 import java.util.ArrayList;
@@ -40,13 +42,13 @@ public class GameScene extends Scene {
         HashMap<Block.Type, TexturedModel> loadedModels = new HashMap<>();
 
         //Load Textures to Models
-        loadedModels.put(Block.Type.GRASS, makeBlockModel("hexfloor"));
-        loadedModels.put(Block.Type.CONCRETE, makeBlockModel("darkwall"));
+        loadedModels.put(Block.Type.GRASS, makeBlockModel("tflor00"));
+        loadedModels.put(Block.Type.CONCRETE, makeBlockModel("cfbrick1"));
         AMGUI crosshair = new AMGUI(modelLoader.loadGUI("crosshair"), new Vector2f(0,0), new Vector2f(0.018f, 0.032f));
         GameplayStatics.addGlobalGui(crosshair);
 
         //Generate the world
-        GameplayStatics.setGlobalWorld(new WorldGenerator(loadedModels).generateNewWorld());
+        GameplayStatics.setGlobalWorld(new WorldGenerator(loadedModels, GameplayStatics).generateNewWorld());
     }
 
     private void SpawnEverything()
@@ -67,11 +69,15 @@ public class GameScene extends Scene {
 
         //Spawn the player
         AMVector2 Spawn = FloorTiles.get(new Random().nextInt(FloorTiles.size()));
-        //GameplayStatics.setGlobalPlayer(new Player(Spawn.x * World.CUBE_SIZE + 0.5f,6.f,Spawn.y * World.CUBE_SIZE + 0.5f, GameplayStatics));
-        GameplayStatics.setGlobalPlayer(new Player(2,2,2, GameplayStatics));
+        GameplayStatics.setGlobalPlayer(new Player(Spawn.x * World.CUBE_SIZE + 0.5f,6.f,Spawn.y * World.CUBE_SIZE + 0.5f, GameplayStatics));
+        //GameplayStatics.setGlobalPlayer(new Player(2,2,2, GameplayStatics));
 
-        GameplayStatics.GetEntitiesWithTag(AMGameplayStatics.Tags.ENEMIES).add(new Block(Block.Type.LEAVES, makeBlockModel("leaves"),
-                0, 0, 0));
+        for(int i=0; i < 10; ++i)
+        {
+            Spawn = FloorTiles.get(new Random().nextInt(FloorTiles.size()));
+            GameplayStatics.GetEntitiesWithTag(AMGameplayStatics.Tags.ENEMIES).add(new Enemy(makeEntityModel("culta1c1"),
+                    new Vector3f(Spawn.x * World.CUBE_SIZE + 0.5f, 4.f,Spawn.y * World.CUBE_SIZE + 0.5f), 0,0,0, 1, GameplayStatics));
+        }
     }
 
     @Override
@@ -83,13 +89,20 @@ public class GameScene extends Scene {
             System.exit(0);
         }
 
-        //Process and Render the WORLD
-        processWorld();
-
         //Process enemies
         for(Entity e : GameplayStatics.GetEntitiesWithTag(AMGameplayStatics.Tags.ENEMIES))
         {
+            Enemy bruh = (Enemy) e;
+            bruh.Update();
             GameplayStatics.getGlobalMainRenderer().processEntity(e);
+        }
+
+        //Process and Render the WORLD
+        processWorld();
+
+        for(Entity e : GameplayStatics.getEntitiesToRemove())
+        {
+            GameplayStatics.GetEntitiesWithTag(AMGameplayStatics.Tags.ENEMIES).remove(e);
         }
     }
 
