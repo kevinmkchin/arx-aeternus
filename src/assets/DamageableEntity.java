@@ -26,9 +26,9 @@ public class DamageableEntity extends Entity {
 
     public void Update()
     {
+        // DEAD
         if(Health <= 0)
         {
-            System.out.println("DEAD");
             GameplayStatics.getEntitiesToRemove().add(this);
         }
     }

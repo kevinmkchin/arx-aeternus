@@ -4,14 +4,29 @@ import game.scene.GameScene;
 import game.scene.Scene;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
+import org.newdawn.slick.opengl.ImageIOImageData;
 import renderEngine.AMGUIRenderer;
 import renderEngine.DisplayManager;
-import renderEngine.ModelLoader;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.nio.ByteBuffer;
 
 public class MainGameLoop {
 
     public static void main(String[] args) {
 
+        try
+        {
+            Display.setIcon(new ByteBuffer[] {
+                    new ImageIOImageData().imageToByteBuffer(ImageIO.read(new File("res/textures/16.png")), false, false, null),
+                    new ImageIOImageData().imageToByteBuffer(ImageIO.read(new File("res/textures/32.png")), false, false, null)
+            });
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         DisplayManager.createDisplay();
 
         Scene activeScene = new GameScene();
