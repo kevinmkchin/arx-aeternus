@@ -115,6 +115,7 @@ public class Player {
             if(weaponSystem.bPendingFire)
             {
                 weaponSystem.StopUse();
+                weaponSystem.Update();
             }
         }
 
