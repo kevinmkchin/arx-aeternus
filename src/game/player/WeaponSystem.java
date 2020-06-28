@@ -47,13 +47,14 @@ public class WeaponSystem {
     private int FireCooldown = 0;
 
     AMGameplayStatics GameplayStatics;
+    AMGUI pistol;
 
     public WeaponSystem(AMGameplayStatics GameplayStatics)
     {
         this.GameplayStatics = GameplayStatics;
 
         //TODO
-        AMGUI pistol = new AMGUI(GameplayStatics.getGlobalModelLoader().loadGUI("autga0"), new Vector2f(0.67f,-0.63f), new Vector2f(0.5f, 0.48f));
+        pistol = new AMGUI(GameplayStatics.getGlobalModelLoader().loadGUI("auto1"), new Vector2f(0.67f,-0.63f), new Vector2f(0.5f, 0.48f));
         GameplayStatics.addGlobalGui(pistol);
     }
 
@@ -70,6 +71,33 @@ public class WeaponSystem {
 
     public void Update()
     {
+        //update pistol ui
+        if(FireCooldown >= 18)
+        {
+            GameplayStatics.getGlobalGuis().remove(pistol);
+            pistol = new AMGUI(GameplayStatics.getGlobalModelLoader().loadGUI("auto2"), new Vector2f(0.67f,-0.63f), new Vector2f(0.5f, 0.48f));
+            GameplayStatics.addGlobalGui(pistol);
+        }
+        else if(FireCooldown >= 10)
+        {
+            GameplayStatics.getGlobalGuis().remove(pistol);
+            pistol = new AMGUI(GameplayStatics.getGlobalModelLoader().loadGUI("auto3"), new Vector2f(0.67f,-0.63f), new Vector2f(0.5f, 0.48f));
+            GameplayStatics.addGlobalGui(pistol);
+        }
+        else if(FireCooldown >= 5)
+        {
+            GameplayStatics.getGlobalGuis().remove(pistol);
+            pistol = new AMGUI(GameplayStatics.getGlobalModelLoader().loadGUI("auto4"), new Vector2f(0.67f,-0.63f), new Vector2f(0.5f, 0.48f));
+            GameplayStatics.addGlobalGui(pistol);
+        }
+        else if(FireCooldown <= 1)
+        {
+            GameplayStatics.getGlobalGuis().remove(pistol);
+            pistol = new AMGUI(GameplayStatics.getGlobalModelLoader().loadGUI("auto1"), new Vector2f(0.67f,-0.63f), new Vector2f(0.5f, 0.48f));
+            GameplayStatics.addGlobalGui(pistol);
+        }
+
+        //update cooldown
         if(bPendingFire && FireCooldown <= 0)
         {
             CenterRaycast(15000);
