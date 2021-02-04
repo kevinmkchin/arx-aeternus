@@ -1,3 +1,3 @@
 # Arx Aeternus / Rapture / ProjectMachina
 
-See: https://kevinmakesstuff.com/rapture.html
+See: https://spaceghost.ca/rapture.html
